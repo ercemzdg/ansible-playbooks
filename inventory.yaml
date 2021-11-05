@@ -1,0 +1,11 @@
+---
+all:
+  hosts: # list of 'ungrouped' hosts
+
+  children: # all custom groups
+    dev:    # group name
+      hosts: # list of 'dev' hosts
+        hos1: # host name
+          ansible_host: "10.116.0.3" # host1 adress
+        host2: # host name
+          ansible_host: "10.116.0.4" # host2 adress
