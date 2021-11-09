@@ -1,0 +1,27 @@
+---
+- name: Ping Servers
+  hosts: dev
+  gather_facts: true
+  tasks:
+    - name: ping
+      when: ansible_distribution == "CentOS"
+      ping:
+
+    - name: install apache
+      when: ansible_pkg_mgr == "yum"
+      yum:
+        name: httpd
+        state: latest
+
+    - name: start httpd
+      when: ansible_service_mgr == "systemd"
+      systemd:
+        state: started
+        name: httpd
+        
+    - name: enable httpd
+      when: ansible_service_mgr == "systemd"
+      systemd:
+        name: httpd
+        enabled: yes
+        masked: no
