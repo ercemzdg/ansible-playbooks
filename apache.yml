@@ -12,6 +12,12 @@
       yum:
         name: httpd
         state: latest
+    
+    - name: install apache for ubuntu sw
+      when: ansible_pkg_mgr == "apt"
+      apt:
+        name: apache2
+        state: latest
 
     - name: start httpd
       when: ansible_service_mgr == "systemd"
@@ -25,3 +31,5 @@
         name: httpd
         enabled: yes
         masked: no
+
+   
